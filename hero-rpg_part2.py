@@ -52,6 +52,14 @@ class Hero(Character):
             probability = random.random() < 0.1
             if probability:
                 points = 0
+        if self.evade == 4:
+            probability = random.random() < 0.15
+            if probability:
+                points = 0
+        if self.evade == 6:
+            probability = random.random() < 0.2
+            if probability:
+                points = 0
         self.health -= points
         print("{} received {} damage.".format(self.name, points))
         if self.health <= 0:
@@ -85,7 +93,7 @@ class Wizard(Character):
         self.name = 'wizard'
         self.health = 8
         self.power = 1
-
+        self.bounty = 6
 
     def attack(self, enemy):
         swap_power = random.random() > 0.5
@@ -101,7 +109,7 @@ class Medic(Character):
         self.name = 'medic'
         self.health = 5
         self.power = 2
-
+        self.bount = 4
 
     def recuperate(self):
         give_health = random.random() > 0.2
@@ -113,6 +121,7 @@ class Shadow(Character):
         self.name = 'shadow'
         self.health = 1
         self.power = 3
+        self.bounty = 7
 
 
     def little_damage(self):
@@ -125,6 +134,7 @@ class Zombie(Character):
         self.name = 'Zombie'
         self.health = 2
         self.power = 3
+        self.bounty = 0
 
 
 
@@ -202,7 +212,7 @@ class Store:
     # If you define a variable in the scope of a class:
     # This is a class variable and you can access it like
     # Store.items => [Tonic, Sword]
-    items = [Tonic, Sword, SuperTonic, Armor]
+    items = [Tonic, Sword, SuperTonic, Armor, Evade]
     def do_shopping(self, hero):
         while True:
             print("=====================")
