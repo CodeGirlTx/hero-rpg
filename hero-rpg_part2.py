@@ -44,9 +44,14 @@ class Hero(Character):
         self.power = 5
         self.coins = 20
         self.armor = 0
+        self.evade = 0
 
     def receive_damage(self, points):
         points = points - self.armor
+        if self.evade == 2:
+            probability = random.random() < 0.1
+            if probability:
+                points = 0
         self.health -= points
         print("{} received {} damage.".format(self.name, points))
         if self.health <= 0:
@@ -185,6 +190,13 @@ class Armor:
     def apply(self, hero):
         hero.armor += 2
         print("You now have {} armor and are stronger against enemy attacks!".format(hero.armor))
+
+class Evade:
+    cost = 10
+    name = 'evade'
+    def apply(self, hero):
+        hero.evade += 2
+        print("You now have {} evade points!".format(hero.evade))
 
 class Store:
     # If you define a variable in the scope of a class:
